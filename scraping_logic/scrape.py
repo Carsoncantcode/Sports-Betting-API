@@ -53,13 +53,10 @@ async def scrapeNBAStats(data):
     statKeys = stat_keys[0].text
 
 
-    # Find the <tbody> element with class 'row-hover'
     tbody = driver.find_elements(By.CSS_SELECTOR, 'tbody.row-hover')[0]
 
-    # Find all <tr> elements within the tbody
     rows = tbody.find_elements(By.TAG_NAME, 'tr')
 
-    # Iterate over each row and print its text content
     for row in rows:
         if player in row.text:
             player_stats = row.text
@@ -74,7 +71,6 @@ async def scrapeNBAStats(data):
     glossary_text = glossary_div.text
 
     print(glossary_text)
-    # Don't forget to close the driver
     driver.quit()
 
     analyzation = await analyzeStats( player, statKeys, player_stats, glossary_text, bet)
